@@ -14,7 +14,7 @@ import random
 import fnmatch
 
 import SimpleITK as sitk
-def N4():
+def N4(): #this worked doing one at a time
     print("N4 bias correction runs.")
     inputImage = sitk.ReadImage("Codel1.nii")
     # maskImage = sitk.ReadImage("06-t1c_mask.nii.gz")
