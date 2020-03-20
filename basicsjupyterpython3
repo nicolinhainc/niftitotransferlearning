@@ -1,0 +1,13 @@
+import sys
+sys.version #this checks which version of software you are using
+
+%pwd  #look at the current work dir
+%cd   #change to the dir you want 
+! ls #list all files in current dir
+
+import os
+import tensorflow as tf
+import numpy as np
+import matplotlib.pyplot as plt
+import random
+import nibabel as nib # Dependency: 'nibabel' to load MRI (NIFTI) images
