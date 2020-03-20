@@ -6,8 +6,28 @@ sys.version #this checks which version of software you are using
 ! ls #list all files in current dir
 
 import os
-import tensorflow as tf
+! pip install tensorflow as tf
 import numpy as np
 import matplotlib.pyplot as plt
 import random
-import nibabel as nib # Dependency: 'nibabel' to load MRI (NIFTI) images
+! pip install nibabel as nib # Dependency: 'nibabel' to load MRI (NIFTI) images
+import fnmatch
+
+import SimpleITK as sitk
+def N4():
+    print("N4 bias correction runs.")
+    inputImage = sitk.ReadImage("Codel1.nii")
+    # maskImage = sitk.ReadImage("06-t1c_mask.nii.gz")
+    maskImage = sitk.OtsuThreshold(inputImage,0,1,200)
+    sitk.WriteImage(maskImage, "Codel1.nii")
+
+    inputImage = sitk.Cast(inputImage,sitk.sitkFloat32)
+
+    corrector = sitk.N4BiasFieldCorrectionImageFilter();
+
+    output = corrector.Execute(inputImage,maskImage)
+    sitk.WriteImage(output,"Codel1.nii")
+    print("Finished N4 Bias Field Correction.....")
+
+if __name__=='__main__':
+   N4()
