@@ -12,6 +12,10 @@ import matplotlib.pyplot as plt
 import random
 ! pip install nibabel as nib # Dependency: 'nibabel' to load MRI (NIFTI) images
 import fnmatch
+! pip install nilearn 
+import nilearn
+from nilearn import image
+from nilearn.image import resample_to_img
 
 import SimpleITK as sitk
 def N4(): #this worked doing one at a time
@@ -31,3 +35,6 @@ def N4(): #this worked doing one at a time
 
 if __name__=='__main__':
    N4()
+
+
+# rescaling 3D image
