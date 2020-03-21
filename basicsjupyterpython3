@@ -17,6 +17,23 @@ import nilearn
 from nilearn import image
 from nilearn.image import resample_to_img
 
+! mkdir prep
+NIFTI_PATH = './prep'
+
+os.environ['FSLOUTPUTTYPE'] = 'NIFTI_GZ'
+
+for subj in os.listdir(NIFTI_PATH):
+    subj_path = os.path.join(NIFTI_PATH, subj)
+    print ("Working on " + subj_path)
+    series = fnmatch.filter(os.listdir(subj_path), '*.nii.gz')
+    for ser in ['T2']:
+        nii_file = os.path.join (subj_path, ser)
+# First, perform N4 bias correction. Not required, but may improve results. Also must track new names
+        new_file = os.path.join (subj_path, 'N4-' + ser)
+        cmd = "./N4BiasFieldCorrection -i %s.nii.gz -o %s.nii.gz" % (nii_file, new_file)
+        os.system(cmd)
+#        print (cmd)
+
 import SimpleITK as sitk
 def N4(): #this worked doing one at a time
     print("N4 bias correction runs.")
