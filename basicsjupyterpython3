@@ -8,6 +8,7 @@ sys.version #this checks which version of software you are using
 import os
 ! pip install tensorflow as tf
 import numpy as np
+! pip install pandas as pd
 import matplotlib.pyplot as plt
 import random
 ! pip install nibabel as nib # Dependency: 'nibabel' to load MRI (NIFTI) images
@@ -18,12 +19,12 @@ from nilearn import image
 from nilearn.image import resample_to_img
 
 ! mkdir prep
-NIFTI_PATH = './prep'
+
 
 os.environ['FSLOUTPUTTYPE'] = 'NIFTI_GZ'
 
-for subj in os.listdir(NIFTI_PATH):
-    subj_path = os.path.join(NIFTI_PATH, subj)
+for subj in os.listdir(os.getcwd()):
+    subj_path = os.path.join(os.getcwd(), subj)
     print ("Working on " + subj_path)
     series = fnmatch.filter(os.listdir(subj_path), '*.nii.gz')
     for ser in ['T2']:
