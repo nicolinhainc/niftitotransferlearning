@@ -23,6 +23,8 @@ from nilearn.image import resample_to_img
 
 os.environ['FSLOUTPUTTYPE'] = 'NIFTI_GZ'
 
+# here switch to other folder
+
 for subj in os.listdir(os.getcwd()):
     subj_path = os.path.join(os.getcwd(), subj)
     print ("Working on " + subj_path)
